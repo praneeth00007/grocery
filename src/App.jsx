@@ -1,35 +1,87 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Toaster } from "@/components/ui/toaster";
+import { Toaster as Sonner } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { CartProvider } from "./contexts/CartContext";
+import { isLoggedIn } from "./utils/auth";
+import { Analytics } from "@vercel/analytics/react"; // Already added
+import { SpeedInsights } from "@vercel/speed-insights/react"; // Add this for React
+import Index from "./pages/Index";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import NotFound from "./pages/NotFound";
+import ProductsPage from "./pages/Products";
+import CategoriesPage from "./pages/Categories";
+import ProductDetail from "./pages/ProductDetail";
+import CartPage from "./pages/Cart";
+import Layout from "./components/Layout";
+import ProtectedRoute from "./components/ProtectedRoute";
+import About from "./pages/About";
 
-function App() {
-  const [count, setCount] = useState(0)
+// Create a new query client
+const queryClient = new QueryClient();
 
+// Log initial auth state
+console.log("App initialization - User logged in:", isLoggedIn());
+
+const App = () => {
+  const authenticated = isLoggedIn();
+  console.log("App render - Auth state:", authenticated);
+  
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <CartProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <Analytics /> {/* Already added */}
+            <SpeedInsights /> {/* Add SpeedInsights here */}
+            <Routes>
+              <Route path="/" element={<Layout><Index /></Layout>} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/about" element={<Layout><About /></Layout>} />
+              <Route 
+                path="/products" 
+                element={
+                  <ProtectedRoute>
+                    <Layout><ProductsPage /></Layout>
+                  </ProtectedRoute>
+                } 
+              />
+              <Route 
+                path="/products/:id" 
+                element={
+                  <ProtectedRoute>
+                    <Layout><ProductDetail /></Layout>
+                  </ProtectedRoute>
+                } 
+              />
+              <Route 
+                path="/categories" 
+                element={
+                  <ProtectedRoute>
+                    <Layout><CategoriesPage /></Layout>
+                  </ProtectedRoute>
+                } 
+              />
+              <Route 
+                path="/cart" 
+                element={
+                  <ProtectedRoute>
+                    <Layout><CartPage /></Layout>
+                  </ProtectedRoute>
+                } 
+              />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </CartProvider>
+      </TooltipProvider>
+    </QueryClientProvider>
+  );
+};
 
-export default App
+export default App;
