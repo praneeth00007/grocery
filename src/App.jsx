@@ -24,6 +24,18 @@ const queryClient = new QueryClient();
 const App = () => {
   const authenticated = isLoggedIn();
   
+  // Debugging effect
+  useEffect(() => {
+    console.log("Vercel Analytics debug:", {
+      isVaLoaded: typeof window.va !== 'undefined',
+      queue: window.va?.q || [],
+      speedInsights: window.si?.q || []
+    });
+    
+    // Optional: Force send a test event
+    window.va?.('event', { action: 'DebugTest' });
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
