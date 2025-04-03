@@ -1,11 +1,12 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CartProvider } from "./contexts/CartContext";
 import { isLoggedIn } from "./utils/auth";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import Index from "./pages/Index";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
@@ -18,15 +19,10 @@ import Layout from "./components/Layout";
 import ProtectedRoute from "./components/ProtectedRoute";
 import About from "./pages/About";
 
-// Create a new query client
 const queryClient = new QueryClient();
-
-// Log initial auth state
-console.log("App initialization - User logged in:", isLoggedIn());
 
 const App = () => {
   const authenticated = isLoggedIn();
-  console.log("App render - Auth state:", authenticated);
   
   return (
     <QueryClientProvider client={queryClient}>
@@ -35,6 +31,8 @@ const App = () => {
           <Toaster />
           <Sonner />
           <BrowserRouter>
+            <Analytics />
+            <SpeedInsights />
             <Routes>
               <Route path="/" element={<Layout><Index /></Layout>} />
               <Route path="/login" element={<Login />} />
