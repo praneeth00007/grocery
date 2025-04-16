@@ -24,7 +24,7 @@ export const products: Product[] = [
   {
     id: 1,
     name: "Organic Avocados",
-    price: 4.99,
+    price: 49.9,
     unit: "pack of 4",
     rating: 4.8,
     image: "https://images.unsplash.com/photo-1601039641847-7857b994d704?q=80&w=2070",
@@ -36,7 +36,7 @@ export const products: Product[] = [
   {
     id: 2,
     name: "Fresh Strawberries",
-    price: 3.49,
+    price: 34.9,
     unit: "250g",
     rating: 4.7,
     image: "https://images.unsplash.com/photo-1464965911861-746a04b4bca6?q=80&w=2070",
@@ -48,10 +48,10 @@ export const products: Product[] = [
   {
     id: 3,
     name: "Sourdough Bread",
-    price: 5.99,
+    price: 59.9,
     unit: "loaf",
     rating: 4.9,
-    image: "https://images.unsplash.com/photo-1585478259715-921b50e5247a?q=80&w=2071",
+    image: "https://images.unsplash.com/photo-1597604391235-a7429b4b350c?q=80&w=1974",
     badge: "Artisan",
     category: "Bakery",
     description: "Artisanal sourdough bread made with a traditional 24-hour fermentation process for maximum flavor and digestibility.",
@@ -63,7 +63,7 @@ export const products: Product[] = [
     price: 6.49,
     unit: "dozen",
     rating: 4.6,
-    image: "https://images.unsplash.com/photo-1489438372380-84e7a6dd5be4?q=80&w=2070",
+    image: "https://plus.unsplash.com/premium_photo-1708715380817-31e20c61b18d?q=80&w=2069",
     badge: "Free Range",
     category: "Dairy & Eggs",
     description: "Ethically sourced free-range eggs from hens raised on open pastures with natural diets.",
@@ -72,7 +72,7 @@ export const products: Product[] = [
   {
     id: 5,
     name: "Organic Spinach",
-    price: 2.99,
+    price: 29.9,
     unit: "200g",
     rating: 4.5,
     image: "https://images.unsplash.com/photo-1576045057995-568f588f82fb?q=80&w=2080",
@@ -84,7 +84,7 @@ export const products: Product[] = [
   {
     id: 6,
     name: "Greek Yogurt",
-    price: 4.29,
+    price: 42.9,
     unit: "500g",
     rating: 4.7,
     image: "https://images.unsplash.com/photo-1488477181946-6428a0291777?q=80&w=1974",
@@ -95,7 +95,7 @@ export const products: Product[] = [
   {
     id: 7,
     name: "Wild Salmon Fillets",
-    price: 12.99,
+    price: 129.9,
     unit: "2 fillets",
     rating: 4.8,
     image: "https://images.unsplash.com/photo-1599084993091-1cb5c0721cc6?q=80&w=1974",
@@ -107,7 +107,7 @@ export const products: Product[] = [
   {
     id: 8,
     name: "Organic Honey",
-    price: 8.49,
+    price: 84.9,
     unit: "340g",
     rating: 4.9,
     image: "https://images.unsplash.com/photo-1587049352851-8d4e89133924?q=80&w=1980",
